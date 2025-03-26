@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Interactive Element Analyzer",
+    "version": "1.0",
+    "description": "Analyzes interactive elements on a webpage and creates annotated screenshots",
+    "permissions": ["activeTab", "scripting", "storage"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["dom-analyzer.js"]
+      }
+    ]
+  }

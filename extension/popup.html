@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Element Analyzer</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    #status {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    #server-url {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+    }
+    #annotated-image {
+      max-width: 100%;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Interactive Element Analyzer</h2>
+  
+  <div>
+    <label for="server-url">Node.js Server URL:</label>
+    <input type="text" id="server-url" value="http://localhost:3000/analyze">
+  </div>
+  
+  <button id="analyze-btn">Analyze Current Page</button>
+  
+  <div id="status" style="display: none;"></div>
+  
+  <div id="image-container" style="display: none; margin-top: 10px;">
+    <img id="annotated-image" src="" alt="Annotated Screenshot">
+    <button id="download-btn" style="margin-top: 10px;">Download Image</button>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
