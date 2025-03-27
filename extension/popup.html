@@ -1,71 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Interactive Element Analyzer</title>
-  <style>
-    body {
-      width: 300px;
-      padding: 10px;
-      font-family: Arial, sans-serif;
-    }
-    button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 10px;
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #3367d6;
-    }
-    #status {
-      margin-top: 10px;
-      padding: 8px;
-      border-radius: 4px;
-    }
-    .success {
-      background-color: #d4edda;
-      color: #155724;
-    }
-    .error {
-      background-color: #f8d7da;
-      color: #721c24;
-    }
-    #server-url {
-      width: 100%;
-      padding: 6px;
-      margin-top: 5px;
-      box-sizing: border-box;
-    }
-    label {
-      font-weight: bold;
-    }
-    #annotated-image {
-      max-width: 100%;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      display: none;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Control</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h2>Interactive Element Analyzer</h2>
-  
-  <div>
-    <label for="server-url">Node.js Server URL:</label>
-    <input type="text" id="server-url" value="http://localhost:3000/analyze">
-  </div>
-  
-  <button id="analyze-btn">Analyze Current Page</button>
-  
-  <div id="status" style="display: none;"></div>
-  
-  <div id="image-container" style="display: none; margin-top: 10px;">
-    <img id="annotated-image" src="" alt="Annotated Screenshot">
-    <button id="download-btn" style="margin-top: 10px;">Download Image</button>
+  <div class="container">
+    <header>
+      <h1>Web Agent</h1>
+      <div class="connection-status">
+        <span id="status-indicator"></span>
+        <span id="status-text">Disconnected</span>
+      </div>
+    </header>
+    
+    <section class="main-content">
+      <div class="server-connection">
+        <h2>Server Connection</h2>
+        <div class="input-group">
+          <input type="text" id="server-url" placeholder="ws://localhost:3000">
+          <button id="connect-btn">Connect</button>
+          <button id="disconnect-btn">Disconnect</button>
+        </div>
+      </div>
+      
+      <div class="task-execution">
+        <h2>Task Execution</h2>
+        <textarea id="task-input" placeholder="Enter your task here... e.g., 'Find the login button and click it'"></textarea>
+        <button id="execute-btn" disabled>Execute Task</button>
+      </div>
+      
+      <div class="status-display">
+        <h2>Status</h2>
+        <div id="current-status">
+          <p>Current tab: <span id="current-tab">None</span></p>
+          <p>Task in progress: <span id="task-status">No</span></p>
+        </div>
+      </div>
+      
+      <div class="settings">
+        <h2>Settings</h2>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="highlight-elements" checked>
+            Highlight interactive elements
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>Viewport expansion (px):</label>
+          <input type="number" id="viewport-expansion" value="300" min="-1" max="1000">
+          <span class="setting-help">(-1 for all elements)</span>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="debug-mode">
+            Debug mode
+          </label>
+        </div>
+        <button id="apply-settings">Apply Settings</button>
+      </div>
+    </section>
+    
+    <section class="results-section">
+      <h2>Task Results</h2>
+      <div id="results-container">
+        <p class="empty-state">No tasks executed yet</p>
+      </div>
+    </section>
+    
+    <footer>
+      <p>AI Web Agent v1.0</p>
+    </footer>
   </div>
   
   <script src="popup.js"></script>

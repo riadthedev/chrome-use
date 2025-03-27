@@ -1,20 +1,34 @@
 {
-    "manifest_version": 3,
-    "name": "Interactive Element Analyzer",
-    "version": "1.0",
-    "description": "Analyzes interactive elements on a webpage and creates annotated screenshots",
-    "permissions": ["activeTab", "scripting", "storage"],
-    "host_permissions": ["<all_urls>"],
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["dom-analyzer.js"]
-      }
-    ]
-  }
+  "manifest_version": 3,
+  "name": "Web Agent",
+  "version": "1.0",
+  "description": "AI agent that can interact with web pages",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Web Agent"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["domBuilder.js", "actionController.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "popup.css", "popup.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
